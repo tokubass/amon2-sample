@@ -29,6 +29,16 @@ use AmonSample::Web::View;
     }
 }
 
+sub render {
+    my ($c,$filename,$vars) = @_;
+
+    $c->SUPER::render($filename, {
+        %{$vars || {} },
+        config => $c->config,
+    });
+}
+
+
 # for your security
 __PACKAGE__->add_trigger(
     AFTER_DISPATCH => sub {
