@@ -36,8 +36,13 @@ sub render {
     local *Teng::Row::update = sub { die 'Teng::Row::update not allow in view template' };
     local *Teng::Row::delete = sub { die 'Teng::Row::delete not allow in view template' };
 
+    my $header = $c->{router}{dispatch_class}->LAYOUT_HEADER;
+    my $footer = $c->{router}{dispatch_class}->LAYOUT_FOOTER;
+
     $c->SUPER::render($filename, {
         %{$vars || {} },
+        header_inc => $header,
+        footer_inc => $footer,
         config => $c->config,
     });
 }

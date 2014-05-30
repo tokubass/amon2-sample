@@ -4,15 +4,10 @@ use warnings;
 use utf8;
 use AmonSample::Web::Dispatcher::RouterBoom;
 
-any '/' => sub {
-    my ($c) = @_;
-    my $counter = $c->session->get('counter') || 0;
-    $counter++;
-    $c->session->set('counter' => $counter);
-    return $c->render('index.tx', {
-        counter => $counter,
-    });
-};
+use Module::Find qw/useall/;
+useall(AmonSample::Web::C);
+
+get  '/' => 'AmonSample::Web::C::Portal#dispatch_index';
 
 post '/reset_counter' => sub {
     my $c = shift;
