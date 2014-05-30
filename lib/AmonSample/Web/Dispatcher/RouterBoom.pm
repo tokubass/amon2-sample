@@ -72,6 +72,9 @@ sub import {
                 } else {
                     my $method = $dest->{method};
                     $c->{args} = $captured;
+                    $c->{router}{dispatch_class}  = $dest->{class};
+                    $c->{router}{dispatch_method} = $method;
+
                     return $dest->{class}->$method($c, $captured);
                 }
             };
