@@ -32,6 +32,10 @@ use AmonSample::Web::View;
 sub render {
     my ($c,$filename,$vars) = @_;
 
+    no warnings 'redefine';
+    local *Teng::Row::update = sub { die 'Teng::Row::update not allow in view template' };
+    local *Teng::Row::delete = sub { die 'Teng::Row::delete not allow in view template' };
+
     $c->SUPER::render($filename, {
         %{$vars || {} },
         config => $c->config,
