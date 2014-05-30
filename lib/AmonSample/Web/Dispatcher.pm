@@ -2,7 +2,7 @@ package AmonSample::Web::Dispatcher;
 use strict;
 use warnings;
 use utf8;
-use Amon2::Web::Dispatcher::RouterBoom;
+use AmonSample::Web::Dispatcher::RouterBoom;
 
 any '/' => sub {
     my ($c) = @_;
